@@ -600,7 +600,7 @@ def read_qr():
 def guided():
     while True:
         banner()
-        print(f"{GREEN}{BOLD}Beginner Mode{RESET} - I'll explain every option while you create the QR.\n")
+        print(f"{GREEN}{BOLD}  QRINUX{RESET} - A terminal based QR code generator.\n")
         print(f"{YELLOW}[1]{RESET} Text / URL QR")
         print(f"{YELLOW}[2]{RESET} Wi-Fi QR")
         print(f"{YELLOW}[3]{RESET} Contact QR")
