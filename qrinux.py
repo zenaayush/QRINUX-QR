@@ -46,8 +46,6 @@ _NAME_HASH = "40984ddd8bb664e1be2af6c549c13737651cb085fcff95b837111de865e00862"
 
 
 def _author_check():
-    # yeh chota sa check hai - agar koi mera naam hata ke credit chura le,
-    # to script chalega hi nahi. isko delete mat karna warna tool kaam nahi karega.
     try:
         my_own_code = Path(__file__).read_text(encoding="utf-8", errors="ignore")
     except Exception:
@@ -79,12 +77,6 @@ def resolve_save_dir():
 SAVE_DIR = resolve_save_dir()
 HISTORY_FILE = SAVE_DIR / "history.json"
 
-
-# ---------------------------------------------------------------------------
-# Big block-letter banner
-# Every glyph uses the exact same 7x7 grid.  The renderer uses one terminal
-# block per grid cell so the banner stays compact and does not wrap on phones.
-# ---------------------------------------------------------------------------
 _FONT = {
     "Q": [
         "1111110",
@@ -182,9 +174,7 @@ def banner():
     """Draw a compact, fixed-grid banner that fits phone terminals."""
     clear()
     cols = shutil.get_terminal_size(fallback=(80, 24)).columns
-
-    # Start with a single block per 7x7 cell. This keeps every glyph the same
-    # width/height and avoids the old 2-character-wide banner wrapping.
+    
     lines = big_text_lines("QRINUX", cell="█", gap=" ")
     content_width = max(len(line) for line in lines)
 
@@ -202,12 +192,12 @@ def banner():
     if frame_width <= cols:
         print(TITLE + BOLD + "╔" + "═" * inner_width + "╗" + RESET)
         for line in lines:
-            # No centering: the text starts/ends exactly at the frame edges.
+            # No centering
             print(TITLE + BOLD + "║" + RESET + line + TITLE + BOLD + "║" + RESET)
         print(TITLE + BOLD + "╚" + "═" * inner_width + "╝" + RESET)
         credit_width = frame_width
     else:
-        # Last-resort fallback for a terminal narrower than the logo itself.
+        # Last-resort fallback for a terminal
         compact = "QRINUX"
         print(TITLE + BOLD + compact.center(cols) + RESET)
         credit_width = cols
